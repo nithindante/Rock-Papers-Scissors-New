@@ -2,40 +2,38 @@ let playerWon = 0;
 let computerWon = 0;
 let playerSelection ;
 let computerSelection;
-let div = document.createElement('div');
-document.body.appendChild(div);
-let newDiv = document.createElement('div');
-let playerStatus = document.createElement('div');
-playerStatus.classList.add('playerStatus');
-let computerStatus = document.createElement('div');
-computerStatus.classList.add('computerStatus');
+    let div = document.createElement('div');
+    document.body.appendChild(div);
+
+    let newDiv = document.createElement('div');
+    let playerStatus = document.createElement('div');
+    playerStatus.classList.add('playerStatus');
+    let computerStatus = document.createElement('div');
+    computerStatus.classList.add('computerStatus');
+
 let resultDiv = document.createElement('div');
 resultDiv.classList.add("resultDiv");
 
-let reset = document.createElement('button');
-reset.classList.add('reset');
-reset.innerHTML="Click to RESET game";
-function getComputerChoice()
+function getComputerChoice()                // a function to choose a random value from the array of choices
 {
     let choices = ["Rock","Paper","Scissors"];
     let random = (Math.floor(Math.random()*3));
     return choices[random];
 }
+
 let buttons = document.querySelectorAll('button');
 let arrayButtons = Array.from(buttons);
-arrayButtons.forEach(function (button)
+arrayButtons.forEach(function (button)    // loops through each of the buttons and await for a click from any of the buttons
 {
     button.addEventListener('click',function()
     {
         playerSelection = button.innerText;
         resultDiv.innerText=" ";
-        playRound(playerSelection,computerSelection);
-        
+        playRound(playerSelection,computerSelection);      
     })
 });
-function playRound(playerSelection,computerSelection)
-{   
-    console.log(typeof(computerStatus));
+function playRound(playerSelection,computerSelection)  // a function to play one round of rock-paper-scissors where the Player selected value and computer selected value is checked and the result is drawn
+{     
     div.appendChild(computerStatus);
     div.appendChild(playerStatus);
     computerSelection = getComputerChoice();
@@ -68,16 +66,13 @@ function playRound(playerSelection,computerSelection)
 
     function setResult()
     {
-       // document.body.appendChild(reset);
        computerStatus.innerText = "Computer : 0";
        computerWon=0;
-       // computerStatus="";
         playerStatus.innerText = "Player : 0";
         playerWon=0;
-      //  playerStatus="";
         newDiv.textContent="";
     }
-    if(playerWon===5||computerWon===5)
+    if(playerWon===5||computerWon===5)      // checks whether 5 rounds are played and the winner is displayed
     {
     document.body.appendChild(resultDiv);
     if(playerWon>computerWon)
